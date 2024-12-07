@@ -19,7 +19,7 @@ by(dane2012$XA20, dane2012$Wojewodztwo, summary)
 
 # Mnożymy przez 1e6, aby przeliczyć miliony na jedności:
 dane$naklad_na_mieszkanca <- (dane$XA17 * 1e6) / dane$XA29
-tabela <- table(cut(dane$naklad_na_mieszkanca, breaks=10), dane$Rok)
+tabela <- table(cut(dane$naklad_na_mieszkanca, breaks=c(0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000)), dane$Rok)
 tabela
 
 

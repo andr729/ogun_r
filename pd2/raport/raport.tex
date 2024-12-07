@@ -173,8 +173,10 @@ dane2012$Wojewodztwo: ZACHODNIOPOMORSKIE
 Dla województwa Dolnośląskiego pojawiała się pojedyncza wartość \code{NA}, która
 jest związana z powiatem M. Wałbrzych, które nie było powiatem w tym roku 2012.
 
+\newpage
 \subsection*{Podpunkt b, c}
 
+Wyniki dla 10 równych przedziałów:
 
 \begin{verbatim}
                     2004 2005 2006 2007 2008 2009 2010 2011 2012 2013 2014 2015
@@ -190,7 +192,7 @@ jest związana z powiatem M. Wałbrzych, które nie było powiatem w tym roku 20
 (2.71e+04,3.02e+04]    0    0    0    0    0    0    0    0    0    1    0    0
 \end{verbatim}
 
-
+Wyniki z podsumowaniem procentowym:
 
 \begin{verbatim}
                     2004 2005 2006 2007 2008 2009 2010 2011 2012 2013 2014 2015
@@ -206,7 +208,31 @@ jest związana z powiatem M. Wałbrzych, które nie było powiatem w tym roku 20
 (2.71e+04,3.02e+04]                     0.00 0.00 0.00 0.00 0.00 0.00 0.00       
 \end{verbatim}
 
+Drugi wymiar powinien być bazą 100\%, jako że w ten sposób otrzymuje udział procentowy
+danego nakładu w kolejnych latach. Innymi słowy wtedy kolumny sumują się do 100\%.
 
+Możemy zaobserwować brak danych dla lat 2004-2007, 2015.
+Dla pozostałych lat możemy zaobserwować stopniowy wzrost nakładów w kolejnych latach, choć
+silna kumulacja wyników w pierwszym przedziale sprawia, że dane mogą ukrywać ukryty w tym przedziale trend.
+
+Wyniki z większą granularnością dla pierwszego przedziału (od $0$ do $1000$):
+
+\begin{verbatim}
+            2004 2005 2006 2007 2008 2009 2010 2011 2012 2013 2014 2015
+(0,100]        0    0    0    0    0    0    0    0    0    1    0    0
+(100,200]      0    0    0    0    1    3    2    0    1    1    1    0
+(200,300]      0    0    0    0    2    2    2    0    0    0    1    0
+(300,400]      0    0    0    0    6    4    4    2    1    0    4    0
+(400,500]      0    0    0    0    7   18   10    6    5    8    2    0
+(500,600]      0    0    0    0    9   13    9    6    5    5    4    0
+(600,700]      0    0    0    0   15   15   18   12    9    5    7    0
+(700,800]      0    0    0    0   11   13   15   11   11   12    7    0
+(800,900]      0    0    0    0    7   17   14   12   10   14   13    0
+(900,1e+03]    0    0    0    0   10   14   12   16   15   13    8    0
+\end{verbatim}
+
+Wyniki te potwierdzają hipotezę stopniowego zwiększania nakładów inwestycyjnych na mieszkańca
+w kolejnych latach.
 
 \subsection*{Podpunkt d}
 
