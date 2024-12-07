@@ -1,0 +1,172 @@
+\documentclass[final,12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{latexsym}
+\usepackage{mathtools}
+\usepackage[margin=1in]{geometry}
+\usepackage[polish,english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{url}
+\usepackage{xspace}
+\usepackage[pdftex]{graphicx}
+\usepackage[pdftex]{color}
+
+\usepackage{adjustbox}
+
+\usepackage{listings}
+
+\usepackage{svg}
+
+\usepackage{float}
+
+\usepackage{subfigure}
+
+\usepackage{placeins}
+
+% \usepackage{svg}
+
+% \usepackage{lstautogobble}
+
+% \definecolor{azure}{rgb}{0.0, 0.5, 0.0}
+% \definecolor{processblue}{cmyk}{0.96,0,0,0}
+
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+\DeclarePairedDelimiter\set{\{}{\}}%
+\DeclarePairedDelimiter\tuple{\langle}{\rangle}%
+
+% Swap the definition of \abs* and \norm*, so that \abs
+% and \norm resizes the size of the brackets, and the 
+% starred version does not.
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+%
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+%
+\let\oldset\set
+\def\set{\@ifstar{\oldset}{\oldset*}}
+%
+\let\oldtuple\tuple
+\def\tuple{\@ifstar{\oldtuple}{\oldtuple*}}
+%
+\makeatother
+%
+
+
+
+
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codered}{rgb}{0.1,0.1,0.7}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+% mathescape here:
+\lstset{style=mystyle,literate={ą}{{\k a}}1
+{Ą}{{\k A}}1
+{ż}{{\. z}}1
+{Ż}{{\. Z}}1
+{ź}{{\' z}}1
+{Ź}{{\' Z}}1
+{ć}{{\' c}}1
+{Ć}{{\' C}}1
+{ę}{{\k e}}1
+{Ę}{{\k E}}1
+{ó}{{\' o}}1
+{Ó}{{\' O}}1
+{ń}{{\' n}}1
+{Ń}{{\' N}}1
+{ś}{{\' s}}1
+{Ś}{{\' S}}1
+{ł}{{\l}}1
+{Ł}{{\L}}1
+{0}{{{\color{codered}{0}}}}1
+{1}{{{\color{codered}{1}}}}1
+{2}{{{\color{codered}{2}}}}1
+{3}{{{\color{codered}{3}}}}1
+{4}{{{\color{codered}{4}}}}1
+{5}{{{\color{codered}{5}}}}1
+{6}{{{\color{codered}{6}}}}1
+{7}{{{\color{codered}{7}}}}1
+{8}{{{\color{codered}{8}}}}1
+{9}{{{\color{codered}{9}}}}1}
+
+% \lstset{language=R,
+%     basicstyle=\small\ttfamily,
+%     stringstyle=\color{DarkGreen},
+%     otherkeywords={0,1,2,3,4,5,6,7,8,9},
+%     morekeywords={TRUE,FALSE},
+%     deletekeywords={data,frame,length,as,character},
+%     keywordstyle=\color{blue},
+%     commentstyle=\color{DarkGreen},
+% }
+
+
+\newcommand{\code}{\texttt}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+
+
+\newcommand{\figDouble}[3]{
+	\FloatBarrier
+	\begin{figure}[!htbp]
+		\centering
+		\subfigure[]{\includesvg[width=0.48\textwidth]{#1}}
+		\subfigure[]{\includesvg[width=0.48\textwidth]{#2}}
+		\caption{#3}
+	\end{figure}
+	\FloatBarrier
+}
+
+\newcommand{\figSingle}[3]{
+	\FloatBarrier
+	\begin{figure}[!htbp]
+		\centering
+		\subfigure[]{\includesvg[width=0.96\textwidth]{#1}}
+		\caption{#2}
+        \label{#3}
+	\end{figure}
+	\FloatBarrier
+}
+
+\newcommand{\figSinglePNG}[3]{
+	\FloatBarrier
+	\begin{figure}[!htbp]
+		\centering
+		\subfigure[]{\includegraphics[width=0.96\textwidth]{#1}}
+		\caption{#2}
+        \label{#3}
+	\end{figure}
+	\FloatBarrier
+}

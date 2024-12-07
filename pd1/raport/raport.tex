@@ -1,0 +1,151 @@
+\include{../../lib.tex}
+
+\title{Program R w zastosowaniach ekonomicznych i finansowych. Praca domowa 1.}
+\author{Andrzej Radzimiński, numer albumu: 429586}
+\date{}
+
+\begin{document}
+
+\renewcommand{\contentsname}{Spis treści}
+
+\setlength{\parindent}{0pt}
+\noindent
+
+\maketitle
+
+% \tableofcontents
+
+% \vspace{20px}
+
+\section*{Treść zadania (moduł 2)}
+
+Proszę o wczytanie do obiektu np. \textbf{baza} przykładowych danych zawartych w module (na razie
+jeszcze tych z lat 2004-2015), a następnie proszę o:
+
+\begin{itemize}
+    \item[a)] utworzenie nowego obiektu klasy data frame o nazwie \textbf{baza2} w którym:
+    \begin{itemize}
+        \item[•] pierwsza „zmienna” (kolumna) to liczby porządkowe (naturalne) od $51$ do $100$
+        \item[•] druga „zmienna” ma stałą wartość=20 (można wykorzystać funkcję \code{rep})
+        \item[•] trzecia „zmienna” liczba wylosowana z liczb całkowitych z zakresu 1:50 (ze
+zwracaniem lub bez -- można wykorzystać funkcję \code{sample(1:50,50))}
+        \item[•] czwarta „zmienna” iloczyn pierwiastka kwadratowego pierwszej zmiennej, drugiej
+zmiennej oraz kwadratu trzeciej zmiennej.
+    \end{itemize}
+    \item[b)] wyświetlenie statystyk podsumowujących dla trzeciej i czwartej zmiennej z obiektu \textbf{baza2}.
+    \item[c)] wyświetlenie statystyk podsumowujących dla wybranej zmiennej (ze zmiennych o
+nazwach X....) z obiektu \textbf{baza} oraz krótką próbę interpretacji (komentarza, co oznacza
+    otrzymany wynik) -- ew. można doszukać się błędu w tak zaproponowanej analizie tej zmiennej.
+    \item[d)] sprawdzenie i wyświetlenie liczby poziomów dla jednej ze zmiennych powiat, podregion
+lub województwo; proszę też wyświetlić 12 pierwszych „poziomów” dla wybranej
+zmiennej.
+\end{itemize}
+
+\newpage
+
+\section*{Kod}
+
+\begin{lstlisting}
+
+    data_file <- paste(getwd(), "/DaneR.csv", sep="")
+
+    baza <- read.csv(data_file, header=TRUE, sep=";", dec=".", encoding="UTF-8")
+    
+    len <- 50
+    
+    baza2 <- data.frame(
+        first  = (len+1):(len*2),
+        second = rep(20, len),
+        third  = sample(1:len, len)
+    )
+    baza2$forth <- sqrt(baza2$first) * baza2$second * baza2$third**2
+    
+    summary(baza2$third)
+    summary(baza2$forth)
+    
+    summary(baza$XB14)
+    
+    nlevels(factor(baza$Powiat))
+    
+    levels(factor(baza$Powiat))[1:12]
+    
+\end{lstlisting}
+
+\section*{Wyniki i opisy}
+
+\subsection*{Statystyki podsumowujące dla trzeciej zmiennej obiektu \code{baza}}
+
+\begin{verbatim}
+    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+    1.00   13.25   25.50   25.50   37.75   50.00 
+\end{verbatim}
+
+Trzecia zmienna była losowana bez zwracania z zakresu od $1$ do $50$.
+Oznacza to, że wylosowany ciąg liczb musi być premutacją zbioru $\set{1, 2, \ldots, 50}$.  
+Wyniki są więc zgodne z oczekiwaniami:
+wartość minimalna to $1$, maksymalna to $50$,
+mediana oraz średnia to $25.5$.
+
+\subsection*{Statystyki podsumowujące dla czwartej zmiennej obiektu \code{baza}}
+
+\begin{verbatim} 
+    Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+    167.3  31687.1 115341.0 149464.7 238554.8 453019.8 
+\end{verbatim}
+
+Czwarta zmienna była obliczana jako iloczyn pierwiastka
+kwadratowego pierwszej zmiennej, drugiej zmiennej oraz kwadratu trzeciej zmiennej.
+
+Pierwsza zmienna jest ciągiem liczb naturalnych od $51$ do $100$, czyli jej pierwiastki są
+ciągiem monotonicznym od około $7.41$ do $10$.
+Druga zmienna jest stała i równa $20$, więc odpowiada ona jedynie za skalowanie wyniku.
+Trzecia zmienna jest losowana z zakresu od $1$ do $50$, więc jej kwadrat jest z zakresu od $1$ do $2500$
+z okczekiwaną medianą około $25^2 = 625$.
+
+Wyniki są zgodne z oczekiwaniami:
+\begin{itemize}
+    \item wartość minimalna to $167.3$, w okolicy $20\cdot7.41 = 148.2$,
+    \item wartość maksymalna to $453019.8$, w okolicy $20\cdot10\cdot2500 = 500000$,
+    \item mediana to $115341.0$, w okolicy $20\cdot8.66\cdot625 = 108250$ ($8.66 \approx \sqrt{75}$ ),
+    \item średnia jest znacznie wyższna od mediany, zgodnie rozkłądem zmiennej trzeciej,
+    mającej największy względny wpływ na wyniki.
+\end{itemize}
+
+
+\subsection*{Statystyki podsumowujące dla \code{XB14} (liczba ludności na aptekę)}
+
+\begin{verbatim}
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+   1422    3106    3807    4011    4606   12665       9 
+\end{verbatim}
+
+Występuje $9$ pół NA's, co jest związane z $9$ wierszami dotyczącymi ``Powiat m.Wałbrzych'', które
+nie posiadają danych.
+Można odnaleźć te wiersze np przy użyciu \code{baza[is.na(baza\$XB14),] }
+
+
+\subsection*{Liczba poziomów dla zmiennej \code{Powiat}}
+
+\begin{verbatim}
+    [1] 370
+\end{verbatim}
+
+Liczba ta reprezentuje liczbę powiatów w zbiorze danych.
+Wartość ta jest zbliżona to faktycznej liczby powaitów w Polsce w roku 2015
+(314 powiatów i 66 miast na prawach powiatu).
+
+\subsection*{12 pierwszych poziomów dla zmiennej \code{Powiat}}
+
+\begin{verbatim}
+ [1] "Powiat aleksandrowski"      "Powiat augustowski"        
+ [3] "Powiat bartoszycki"         "Powiat będziński"          
+ [5] "Powiat bełchatowski"        "Powiat białobrzeski"       
+ [7] "Powiat białogardzki"        "Powiat białostocki"        
+ [9] "Powiat bialski"             "Powiat bielski"            
+[11] "Powiat bieruńsko-lędziński" "Powiat bieszczadzki"
+\end{verbatim}
+
+Lista ta reprezentuje 12 pierwszych powiatów w zbiorze danych.
+
+\end{document}
+
