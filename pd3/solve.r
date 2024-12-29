@@ -27,18 +27,14 @@ t.test(XB03.2015, XB03.2014, paired=TRUE, var.equal=TRUE)
 # avg:
 dane_przed_2015 <- dane[dane$Rok<2015,]
 
-# @TODO: napisać, czemu po kod_powiat
+# @TODO: napisać, czemu po kod_powiat (albo nie)
 # XB03.avg <- as.vector(tapply(dane_przed_2015$XB03, dane_przed_2015$Kod_powiat, mean))
 
-XB03.avg <- as.vector(aggregate(dane_przed_2015$XB03, by=list(dane_przed_2015$Kod_powiat), FUN=mean, na.rm=TRUE))
-
-# length(dane$XB03[dane$Rok==2015])
-# length(XB03.2015)
-# length(XB03.avg)
+XB03.avg <- as.vector(aggregate(dane_przed_2015$XB03, by=list(dane_przed_2015$Kod_powiat), FUN=mean, na.rm=TRUE)$x)
 
 summary(XB03.avg)
-# var.test(XB03.2015, XB03.avg)
-# t.test(XB03.2015, XB03.avg, paired=TRUE)
+var.test(XB03.2015, XB03.avg)
+t.test(XB03.2015, XB03.avg, paired=TRUE)
 
 
 
@@ -46,3 +42,6 @@ summary(XB03.avg)
 
 # Powiat nowodworski duplikat :o
 
+
+
+warnings()
