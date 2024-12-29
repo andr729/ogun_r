@@ -26,4 +26,9 @@ dzieci_na_miejsce.avg <- as.vector(tapply(dane_przed_2015$dzieci_na_miejsce, dan
 
 summary(dzieci_na_miejsce.avg)
 var.test(dzieci_na_miejsce.2015, dzieci_na_miejsce.avg)
-t.test(dzieci_na_miejsce.2015, dzieci_na_miejsce.avg, paired=TRUE, var.equal=TRUE)
+
+# paired nie działa, bo są różnej długości... (pytanie czemu?)
+t.test(dzieci_na_miejsce.2015, dzieci_na_miejsce.avg, var.equal=TRUE)
+
+
+
