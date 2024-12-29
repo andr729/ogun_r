@@ -68,11 +68,53 @@ t.test(XB03.2015, XB03.avg, paired=TRUE, var.equal=FALSE)
 \subsection*{Porównanie średnich z lat 2014 i 2015}
 
 \begin{verbatim}
+  Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  0.700   1.030   1.250   1.337   1.512   4.520 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  0.740   1.060   1.305   1.392   1.590   5.510 
 
 
+	F test to compare two variances
+
+data:  XB03.2015 and XB03.2014
+F = 0.85445, num df = 379, denom df = 379, p-value = 0.1262
+alternative hypothesis: true ratio of variances is not equal to 1
+95 percent confidence interval:
+ 0.6984093 1.0453615
+sample estimates:
+ratio of variances 
+         0.8544532 
+
+
+	Paired t-test
+
+data:  XB03.2015 and XB03.2014
+t = -8.8208, df = 379, p-value < 2.2e-16
+alternative hypothesis: true mean difference is not equal to 0
+95 percent confidence interval:
+ -0.06700257 -0.04257638
+sample estimates:
+mean difference 
+    -0.05478947 
 
 \end{verbatim}
 
+Próbki z lat 2014, 2015 mają równe liczebności.
+Ze statystyk widać, że są nieznaczne różnice pomiędzy średnimi i medianami,
+więc nieznacznie zmienił się kształt rozkładu. 
+F test, wykonany za pomocą funkcji \code{var.test}, nie pozwala odrzucić hipotezy zerowej o równości wariancji (p-value powyżej 10\%). 
+Przyjmujemy zatem hipotezę o równości wariancji. 
+
+\ \\
+Test t, wykonany za pomocą funkcji \code{t.test}, wskazuje na istotną statystycznie różnicę średnich liczby dzieci na jedno miejsce w przedszkolu między latami 2014 i 2015 ($\text{p-value} < 2.2\text{e-}16$). Możemy zatem stwierdzić, że średnia liczba dzieci na jedno miejsce w przedszkolu w 2015 roku była istotnie różna od średniej z 2014 roku.
+Wykorzystana została opcja \code{paired=TRUE}, gdyż kolejne obserwacje w
+obu próbkach należą do tych samych powiatów. Przyjęto także równe wariancje \code{var.equal=TRUE}, na podstawie wyników testu F.
+
+
+
+
+
+% TODO: opisując drugi podpunkt poruszyć kwestie z tym, że dla włabrzych nie ma pełnych danych
 
 \end{document}
 
