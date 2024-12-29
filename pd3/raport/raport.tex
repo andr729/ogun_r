@@ -62,7 +62,7 @@ summary(XB03.avg)
 var.test(XB03.2015, XB03.avg)
 t.test(XB03.2015, XB03.avg, paired=TRUE, var.equal=FALSE)  
 \end{lstlisting}
-
+\newpage
 \section*{Wyniki i opisy}
 
 \subsection*{Porównanie średnich z lat 2014 i 2015}
@@ -111,8 +111,39 @@ Wykorzystana została opcja \code{paired=TRUE}, gdyż kolejne obserwacje w
 obu próbkach należą do tych samych powiatów. Przyjęto także równe wariancje \code{var.equal=TRUE}, na podstawie wyników testu F.
 
 
+\newpage
+\subsection*{Porównanie średnich z roku 2015 i lat wcześniejszych}
+
+\begin{verbatim}
+  Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  0.8218  1.2141  1.6386  1.8159  2.1716  7.2818 
+
+  F test to compare two variances
+
+data:  XB03.2015 and XB03.avg
+F = 0.29701, num df = 379, denom df = 379, p-value < 2.2e-16
+alternative hypothesis: true ratio of variances is not equal to 1
+95 percent confidence interval:
+  0.2427695 0.3633713
+sample estimates:
+ratio of variances 
+          0.2970109 
 
 
+  Paired t-test
+
+data:  XB03.2015 and XB03.avg
+t = -19.918, df = 379, p-value < 2.2e-16
+alternative hypothesis: true mean difference is not equal to 0
+95 percent confidence interval:
+  -0.5263813 -0.4317934
+sample estimates:
+mean difference 
+      -0.4790873 
+
+\end{verbatim}
+
+@TODO
 
 % TODO: opisując drugi podpunkt poruszyć kwestie z tym, że dla włabrzych nie ma pełnych danych
 
