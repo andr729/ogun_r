@@ -1,21 +1,24 @@
 \include{../../lib.tex}
 
+
 \title{Program R w zastosowaniach ekonomicznych i finansowych. Praca domowa 3.}
 \author{Andrzej Radzimiński, numer albumu: 429586}
 \date{}
 
 \begin{document}
 
+\newgeometry{margin=1in,top=0.3in,bottom=0.7in}
+
 \renewcommand{\contentsname}{Spis treści}
 
 \setlength{\parindent}{0pt}
 \noindent
 
+
 \maketitle
 
 % \tableofcontents
 
-% \vspace{20px}
 
 \section*{Treść zadania (moduł 8)}
 
@@ -26,7 +29,7 @@ dzieci na jedno miejsce w przedszkolu w 2015 roku była równa średniej z danyc
 poprzednie dostępne lata (dla tej samej zmiennej). Proszę pamiętać o krótkiej interpretacji. W
 razie niejasności zapraszam na forum.
 
-\newpage
+% \newpage
 
 \section*{Kod}
 
@@ -62,7 +65,13 @@ summary(XB03.avg)
 var.test(XB03.2015, XB03.avg)
 t.test(XB03.2015, XB03.avg, paired=TRUE, var.equal=FALSE)  
 \end{lstlisting}
+
+
+
+\restoregeometry
 \newpage
+
+
 \section*{Wyniki i opisy}
 
 \subsection*{Porównanie średnich z lat 2014 i 2015}
@@ -143,9 +152,21 @@ mean difference
 
 \end{verbatim}
 
-@TODO
 
 % TODO: opisując drugi podpunkt poruszyć kwestie z tym, że dla włabrzych nie ma pełnych danych
+
+Próbki z roku 2015 i średniej poprzednich lat mają równe liczebności.
+Ze statystyk podsumowujących, widać większe różnice między średnimi i medianami w porównaniu do poprzedniego testu.
+F test, wykonany za pomocą funkcji \code{var.test}, pozwala odrzucić hipotezę zerową o równości wariancji (p-value mniejsze niż $0.5$, a nawet mniejsze niż $2.2$e-$16$).
+Zakładamy zatem, że wariancje mogą być różne.
+
+\ \\
+Test t, wykonany za pomocą funkcji \code{t.test}, wskazuje na istotną statystycznie różnicę średnich liczby dzieci na jedno miejsce w przedszkolu między rokiem 2015 a średnią z lat wcześniejszych ($\text{p-value} < 2.2\text{e-}16$). Możemy zatem stwierdzić, że średnia liczba dzieci na jedno miejsce w przedszkolu w 2015 roku była istotnie różna od średniej z lat wcześniejszych.
+Wykorzystana została opcja \code{paired=TRUE}, gdyż kolejne obserwacje w
+obu próbkach należą do tych samych powiatów. Przyjęto również \code{var.equal=FALSE}, na podstawie wyników testu~F.
+
+
+
 
 \end{document}
 
